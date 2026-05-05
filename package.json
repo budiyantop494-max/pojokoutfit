@@ -1,0 +1,8 @@
+{
+  "name": "uniqlo-clone",
+  "version": "1.0.0",
+  "description": "Clone of Uniqlo Landing Page",
+  "scripts": {
+    "serve": "npx -y http-server ."
+  }
+}

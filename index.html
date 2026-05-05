@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pojok Outfit | Pakaian Berkualitas untuk Semua</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        .po-brand { background-color: #ec530c; } /* Orange Cerah */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .nav-item { font-weight: 700; font-size: 14px; letter-spacing: 0.05em; }
+        .plp-hidden { display: none; }
+        .pdp-hidden { display: none; }
+        .logo-text { font-family: 'Roboto', sans-serif; font-weight: 900; line-height: 0.9; }
+        .size-btn.active { border-color: black; background-color: black; color: white; }
+        .color-btn.active { ring: 2px; ring-color: black; ring-offset: 2px; }
+
+        /* Ken Burns Effect for Video-like feel */
+        @keyframes kenburns {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-2%, -2%); }
+        }
+        .animate-kenburns {
+            animation: kenburns 10s ease-out forwards;
+        }
+        .hero-slide {
+            display: none;
+            transition: opacity 1s ease-in-out;
+        }
+        .hero-slide.active {
+            display: block;
+        }
+
+        /* Marquee for Trending Section */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="bg-white text-black">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full bg-white z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto flex items-center h-16 px-4">
+            <!-- Left: Logo -->
+            <div class="flex-shrink-0">
+                <div class="po-brand px-3 py-2 flex flex-col items-center justify-center cursor-pointer shadow-lg transform hover:scale-105 transition-transform" onclick="showLanding()">
+                    <span class="text-white logo-text text-lg tracking-tighter">POJOK</span>
+                    <span class="text-white logo-text text-lg tracking-tighter">OUTFIT</span>
+                </div>
+            </div>
+
+            <!-- Center: Main Nav -->
+            <nav class="hidden md:flex flex-1 justify-center space-x-8 h-full items-center">
+                <!-- WANITA with Mega Menu -->
+                    <div class="group h-full flex items-center">
+                        <a href="#" class="nav-item border-b-4 border-transparent group-hover:border-black h-full flex items-center px-2">WANITA</a>
+                        
+                        <!-- Mega Menu -->
+                        <div class="absolute top-16 left-0 w-full bg-white border-b border-gray-200 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-y-auto max-h-[calc(100vh-64px)]">
+                            <div class="max-w-7xl mx-auto p-8">
+                                <!-- Search Bar -->
+                                <div class="relative mb-10">
+                                    <input type="text" placeholder="Apa yang Anda cari?" class="w-full border border-gray-300 rounded-full py-3 px-12 focus:outline-none focus:border-gray-500 text-sm">
+                                    <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                </div>
+
+                                <!-- Categories Grid -->
+                                <div class="grid grid-cols-4 gap-y-8 gap-x-12">
+                                    <!-- Row 1 -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showTshirtPLP()">
+                                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="T-Shirt">
+                                        <span class="text-xs font-bold">T-Shirt, Sweat, & Bratop</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Luaran')">
+                                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Luaran">
+                                        <span class="text-xs font-bold">Luaran</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Kemeja, Blus, & Polo')">
+                                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=200&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Kemeja">
+                                        <span class="text-xs font-bold">Kemeja, Blus, & Polo</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Sweater & Cardigan Rajut')">
+                                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Sweater">
+                                        <span class="text-xs font-bold">Sweater & Cardigan Rajut</span>
+                                    </div>
+
+                                    <!-- Row 2 -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Celana')">
+                                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Celana">
+                                        <span class="text-xs font-bold">Celana</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Rok & Gaun')">
+                                        <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Rok">
+                                        <span class="text-xs font-bold">Rok & Gaun</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Dalaman')">
+                                        <img src="https://images.unsplash.com/photo-1616150638538-ffb0679a3fc4?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Dalaman">
+                                        <span class="text-xs font-bold">Dalaman</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Loungewear')">
+                                        <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?q=80&w=200&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Loungewear">
+                                        <span class="text-xs font-bold">Loungewear</span>
+                                    </div>
+
+                                    <!-- Special Sections -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('UV Protection')">
+                                        <div class="w-12 h-12 bg-black text-white flex items-center justify-center text-[8px] font-black leading-tight p-1 text-center">UV PROTECTION</div>
+                                        <span class="text-xs font-bold uppercase tracking-tighter">UV Protection</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('AIRism')">
+                                        <div class="w-12 h-12 border border-gray-200 flex items-center justify-center text-[10px] font-black text-blue-500 italic">AIRism</div>
+                                        <span class="text-xs font-bold">AIRism</span>
+                                    </div>
+                                    <!-- Collaborations -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Special Collaborations')">
+                                        <div class="w-12 h-12 bg-black text-white flex items-center justify-center text-[8px] font-black tracking-widest uppercase italic">COLLAB</div>
+                                        <span class="text-xs font-bold">Special Collaborations</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Pojok Outfit')">
+                                        <div class="w-12 h-12 border border-black flex items-center justify-center text-[8px] font-black uppercase text-center">UNIQLO<br>U</div>
+                                        <span class="text-xs font-bold">Pojok Outfit</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Sale')">
+                                        <div class="w-12 h-12 border border-[#ff4d00] flex items-center justify-center text-[10px] font-black text-[#ff4d00]">SALE</div>
+                                        <span class="text-xs font-bold">Sale</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('New Arrivals')">
+                                        <div class="w-12 h-12 bg-gray-100 flex items-center justify-center text-[8px] font-bold text-gray-500">NEW</div>
+                                        <span class="text-xs font-bold">New Arrivals</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRIA with Mega Menu -->
+                    <div class="group h-full flex items-center">
+                        <a href="#" class="nav-item border-b-4 border-transparent group-hover:border-black h-full flex items-center px-2">PRIA</a>
+                        
+                        <!-- Mega Menu PRIA -->
+                        <div class="absolute top-16 left-0 w-full bg-white border-b border-gray-200 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-y-auto max-h-[calc(100vh-64px)]">
+                            <div class="max-w-7xl mx-auto p-8">
+                                <!-- Search Bar -->
+                                <div class="relative mb-10">
+                                    <input type="text" placeholder="Cari di kategori Pria..." class="w-full border border-gray-300 rounded-full py-3 px-12 focus:outline-none focus:border-gray-500 text-sm">
+                                    <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                </div>
+
+                                <!-- Categories Grid -->
+                                <div class="grid grid-cols-4 gap-y-8 gap-x-12">
+                                    <!-- Row 1 -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showTshirtPLP()">
+                                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="T-Shirt">
+                                        <span class="text-xs font-bold">T-Shirt, Sweat, & UT</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showPoloPLP()">
+                                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Kemeja">
+                                        <span class="text-xs font-bold">Kaos Polo & Kemeja</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Luaran')">
+                                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Luaran">
+                                        <span class="text-xs font-bold">Luaran</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Sweater Rajut')">
+                                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Sweater">
+                                        <span class="text-xs font-bold">Sweater Rajut</span>
+                                    </div>
+                                    <!-- Row 2 -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Bawahan')">
+                                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Bawahan">
+                                        <span class="text-xs font-bold">Bawahan</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Dalaman')">
+                                        <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Dalaman">
+                                        <span class="text-xs font-bold">Dalaman</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Loungewear')">
+                                        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Loungewear">
+                                        <span class="text-xs font-bold">Loungewear</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Aksesoris')">
+                                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Aksesoris">
+                                        <span class="text-xs font-bold">Aksesoris</span>
+                                    </div>
+                                    <!-- Row 3 -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Sport Utility Wear')">
+                                        <div class="w-12 h-12 border border-blue-600 flex flex-col items-center justify-center text-[6px] font-black text-blue-600 leading-none p-1 text-center">SPORT<br>UTILITY<br>WEAR</div>
+                                        <span class="text-xs font-bold uppercase tracking-tighter">SPORT UTILITY WEAR</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('UV Protection')">
+                                        <div class="w-12 h-12 bg-black text-white flex items-center justify-center text-[8px] font-black leading-tight p-1 text-center">UV PROTECTION</div>
+                                        <span class="text-xs font-bold uppercase tracking-tighter">UV Protection</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('AIRism')">
+                                        <div class="w-12 h-12 border border-blue-400 flex items-center justify-center text-[10px] font-black text-blue-400 italic">AIRism</div>
+                                        <span class="text-xs font-bold">AIRism</span>
+                                    </div>
+                                    <!-- Row 5 -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Outfit U')">
+                                        <div class="w-12 h-12 border border-black flex items-center justify-center text-[8px] font-black uppercase text-center">OUTFIT<br>U</div>
+                                        <span class="text-xs font-bold">Outfit U</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('New Arrivals')">
+                                        <div class="w-12 h-12 bg-lime-500 flex items-center justify-center text-[8px] font-bold text-white text-center uppercase">NEW<br>ARRIVAL</div>
+                                        <span class="text-xs font-bold">New Arrivals</span>
+                                    </div>
+
+                                    <!-- Row 6 -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Limited Offers')">
+                                        <div class="w-12 h-12 bg-red-600 text-white flex items-center justify-center text-[8px] font-bold text-center leading-none uppercase">LIMITED<br>OFFERS</div>
+                                        <span class="text-xs font-bold">Limited Offers</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Sale')">
+                                        <div class="w-12 h-12 border border-[#ff4d00] flex items-center justify-center text-[10px] font-black text-[#ff4d00]">SALE</div>
+                                        <span class="text-xs font-bold">Sale</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Extra Sizes')">
+                                        <div class="w-12 h-12 flex items-center justify-center">
+                                            <div class="flex flex-col items-center">
+                                                <i class="fas fa-tshirt text-gray-400 text-xs"></i>
+                                                <span class="text-[6px] font-bold text-gray-500">EXTRA SIZES</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-xs font-bold">Extra Sizes</span>
+                                    </div>
+
+                                    <!-- Row 7 -->
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer">
+                                        <i class="far fa-calendar-alt w-12 h-12 flex items-center justify-center text-xl text-gray-600"></i>
+                                        <span class="text-xs font-bold">Coming soon</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer">
+                                        <i class="far fa-star w-12 h-12 flex items-center justify-center text-xl text-gray-600"></i>
+                                        <span class="text-xs font-bold">Best Sellers</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- ANAK with Mega Menu -->
+                <div class="group h-full flex items-center">
+                    <a href="#" class="nav-item border-b-4 border-transparent group-hover:border-black h-full flex items-center px-2">ANAK</a>
+                
+                    <!-- Mega Menu ANAK -->
+                    <div class="absolute top-16 left-0 w-full bg-white border-b border-gray-200 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-y-auto max-h-[calc(100vh-64px)]">
+                        <div class="max-w-7xl mx-auto p-8 text-left">
+                            <!-- Search Bar -->
+                            <div class="relative mb-10">
+                                <input type="text" placeholder="Cari di kategori Anak..." class="w-full border border-gray-300 rounded-full py-3 px-12 focus:outline-none focus:border-gray-500 text-sm">
+                                <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <!-- Categories Grid -->
+                            <div class="grid grid-cols-4 gap-y-8 gap-x-12">
+                                <!-- Row 1 -->
+                                 <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('T-Shirt & Sweat')">
+                                     <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="T-Shirt">
+                                     <span class="text-xs font-bold">T-Shirt & Sweat</span>
+                                 </div>
+                                 <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Kaos Polo & Kemeja')">
+                                     <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Kemeja">
+                                     <span class="text-xs font-bold">Kaos Polo & Kemeja</span>
+                                 </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Luaran')">
+                                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Luaran">
+                                    <span class="text-xs font-bold">Luaran</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Bawahan')">
+                                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Bawahan">
+                                    <span class="text-xs font-bold">Bawahan</span>
+                                </div>
+                                <!-- Row 2 -->
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Gaun')">
+                                    <img src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Gaun">
+                                    <span class="text-xs font-bold">Gaun</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Dalaman')">
+                                     <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Dalaman">
+                                     <span class="text-xs font-bold">Dalaman</span>
+                                 </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Loungewear')">
+                                    <img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Loungewear">
+                                    <span class="text-xs font-bold">Loungewear</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Aksesoris')">
+                                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Aksesoris">
+                                    <span class="text-xs font-bold">Aksesoris</span>
+                                </div>
+                                <!-- Row 3 -->
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Sport Utility Wear')">
+                                    <div class="w-12 h-12 border border-blue-600 flex flex-col items-center justify-center text-[6px] font-black text-blue-600 leading-none p-1 text-center">SPORT<br>UTILITY<br>WEAR</div>
+                                    <span class="text-xs font-bold uppercase tracking-tighter">SPORT UTILITY WEAR</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('UV Protection')">
+                                    <div class="w-12 h-12 bg-black text-white flex items-center justify-center text-[8px] font-black leading-tight p-1 text-center">UV PROTECTION</div>
+                                    <span class="text-xs font-bold uppercase tracking-tighter">UV Protection</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('AIRism')">
+                                    <div class="w-12 h-12 border border-blue-400 flex items-center justify-center text-[10px] font-black text-blue-400 italic">AIRism</div>
+                                    <span class="text-xs font-bold">AIRism</span>
+                                </div>
+                                <!-- Row 4 -->
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('New Arrivals')">
+                                    <div class="w-12 h-12 bg-lime-500 flex items-center justify-center text-[8px] font-bold text-white text-center uppercase">NEW<br>ARRIVAL</div>
+                                    <span class="text-xs font-bold">New Arrivals</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Sale')">
+                                    <div class="w-12 h-12 border border-[#ff4d00] flex items-center justify-center text-[10px] font-black text-[#ff4d00]">SALE</div>
+                                    <span class="text-xs font-bold">Sale</span>
+                                </div>
+                                <!-- Row 5 -->
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Extra Sizes')">
+                                    <div class="w-12 h-12 flex items-center justify-center">
+                                        <div class="flex flex-col items-center">
+                                            <i class="fas fa-tshirt text-gray-400 text-xs"></i>
+                                            <span class="text-[6px] font-bold text-gray-500 uppercase">Extra Sizes</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold">Extra Sizes</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer">
+                                    <i class="far fa-calendar-alt w-12 h-12 flex items-center justify-center text-xl text-gray-600"></i>
+                                    <span class="text-xs font-bold">Coming soon</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer">
+                                    <i class="far fa-star w-12 h-12 flex items-center justify-center text-xl text-gray-600"></i>
+                                    <span class="text-xs font-bold">Best Sellers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- BAYI with Mega Menu -->
+                <div class="group h-full flex items-center">
+                    <a href="#" class="nav-item border-b-4 border-transparent group-hover:border-black h-full flex items-center px-2">BAYI</a>
+
+                    <!-- Mega Menu BAYI -->
+                    <div class="absolute top-16 left-0 w-full bg-white border-b border-gray-200 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-y-auto max-h-[calc(100vh-64px)]">
+                        <div class="max-w-7xl mx-auto p-8 text-left">
+                            <!-- Search Bar -->
+                            <div class="relative mb-10">
+                                <input type="text" placeholder="Cari di kategori Bayi..." class="w-full border border-gray-300 rounded-full py-3 px-12 focus:outline-none focus:border-gray-500 text-sm">
+                                <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            </div>
+
+                            <!-- Categories Grid -->
+                            <div class="grid grid-cols-4 gap-y-8 gap-x-12">
+                                <!-- Row 1 -->
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Newborn (0 - 1 Tahun)')">
+                                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Newborn">
+                                    <span class="text-xs font-bold">Newborn (0 - 1 Tahun)</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Toddler (1 - 4 Tahun)')">
+                                     <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=100&h=100&auto=format&fit=crop" class="w-12 h-12 object-cover" alt="Toddler">
+                                     <span class="text-xs font-bold">Toddler (1 - 4 Tahun)</span>
+                                 </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('UT Graphic T-Shirts')">
+                                    <div class="w-12 h-12 bg-red-600 text-white flex items-center justify-center text-xl font-black">UT</div>
+                                    <span class="text-xs font-bold">UT Graphic T-Shirts</span>
+                                </div>
+
+                                <!-- Row 2 -->
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('New Arrivals')">
+                                    <div class="w-12 h-12 bg-lime-500 flex items-center justify-center text-[8px] font-bold text-white text-center uppercase">NEW<br>ARRIVAL</div>
+                                    <span class="text-xs font-bold">New Arrivals</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Limited Offers')">
+                                    <div class="w-12 h-12 bg-red-600 text-white flex items-center justify-center text-[8px] font-bold text-center leading-none uppercase">LIMITED<br>OFFERS</div>
+                                    <span class="text-xs font-bold">Limited Offers</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Sale')">
+                                    <div class="w-12 h-12 border border-[#ff4d00] flex items-center justify-center text-[10px] font-black text-[#ff4d00]">SALE</div>
+                                    <span class="text-xs font-bold">Sale</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Limited Stores')">
+                                    <div class="w-12 h-12 border border-black flex items-center justify-center text-[8px] font-bold text-center leading-none uppercase">LIMITED<br>STORES</div>
+                                    <span class="text-xs font-bold">Limited Stores</span>
+                                </div>
+
+                                <!-- Row 3 -->
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer" onclick="showCategoryPLP('Extra Sizes')">
+                                    <div class="w-12 h-12 flex items-center justify-center">
+                                        <div class="flex flex-col items-center">
+                                            <i class="fas fa-tshirt text-gray-400 text-xs"></i>
+                                            <span class="text-[6px] font-bold text-gray-500 uppercase">Extra Sizes</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold">Extra Sizes</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer">
+                                    <i class="far fa-calendar-alt w-12 h-12 flex items-center justify-center text-xl text-gray-600"></i>
+                                    <span class="text-xs font-bold">Coming soon</span>
+                                </div>
+                                <div class="flex items-center space-x-4 hover:bg-gray-50 p-2 cursor-pointer">
+                                    <i class="far fa-star w-12 h-12 flex items-center justify-center text-xl text-gray-600"></i>
+                                    <span class="text-xs font-bold">Best Sellers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </nav>
+
+            <!-- Right: Icons -->
+            <div class="flex items-center space-x-6 flex-shrink-0">
+                <button class="text-xl hover:text-gray-600"><i class="fas fa-search"></i></button>
+                <button class="text-xl hover:text-gray-600"><i class="far fa-heart"></i></button>
+                <button class="text-xl hover:text-gray-600"><i class="far fa-user"></i></button>
+                <button onclick="showCartPage()" class="text-xl hover:text-gray-600 relative">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count-badge" class="absolute -top-2 -right-2 bg-red-600 text-white text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+                <button class="text-xl hover:text-gray-600 md:hidden"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Landing Page Content -->
+        <div id="landing-page">
+            <!-- Hero Slider Section -->
+            <section class="relative h-[90vh] overflow-hidden">
+                <!-- Slide 1 -->
+                <div class="hero-slide active absolute inset-0">
+                    <div class="absolute inset-0 bg-cover bg-center animate-kenburns" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=2000&auto=format&fit=crop');"></div>
+                    <div class="absolute inset-0 flex items-end p-8 md:p-20 text-white">
+                        <div class="max-w-7xl mx-auto w-full">
+                            <span class="inline-block bg-black text-[10px] font-black px-3 py-1 mb-6 tracking-widest uppercase">UNISEX</span>
+                            <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Celana Pendek Jeans (Jorts)</h2>
+                            <p class="text-lg md:text-xl mb-6 max-w-xl opacity-90">Siluet wide yang santai dengan panjang di bawah lutut, mudah dipadukan untuk berbagai gaya.</p>
+                            <p class="text-3xl md:text-4xl font-bold">Rp199.000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="hero-slide absolute inset-0">
+                    <div class="absolute inset-0 bg-cover bg-center animate-kenburns" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=2000&auto=format&fit=crop');"></div>
+                    <div class="absolute inset-0 flex items-end p-8 md:p-20 text-white">
+                        <div class="max-w-7xl mx-auto w-full">
+                            <span class="inline-block bg-[#2b0be2] text-[10px] font-black px-3 py-1 mb-6 tracking-widest uppercase">NEW ARRIVAL</span>
+                            <h2 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Kaos Crew Neck </h2>
+                            <p class="text-lg md:text-xl mb-6 max-w-xl opacity-90">Kenyamanan bahan katun sejuk dan cepat kering.</p>
+                            <p class="text-3xl md:text-4xl font-bold">Rp99.000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification Banners (Floating) -->
+                <div id="promo-banner" class="absolute top-8 left-4 md:left-20 space-y-3 z-10 max-w-sm">
+                    <div class="bg-white/95 p-4 flex justify-between items-start shadow-md group">
+                        <p class="text-xs text-gray-700 leading-relaxed">
+                            Terinspirasi dari Anda. Bagikan ulasanmu dan menangkan produk POJOK OUTFIT. Klik untuk detail.
+                        </p>
+                        <button onclick="closePromoBanner()" class="text-gray-400 hover:text-black ml-4"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+
+                <!-- Slider Controls -->
+                <div class="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col space-y-4 z-20">
+                    <div class="w-1 h-12 bg-white/20 relative">
+                        <div id="hero-progress" class="absolute top-0 left-0 w-full bg-white transition-all duration-100" style="height: 0%"></div>
+                    </div>
+                    <button onclick="nextHeroSlide()" class="text-white opacity-50 hover:opacity-100 transition-opacity"><i class="fas fa-chevron-down"></i></button>
+                </div>
+            </section>
+
+            <!-- Moving Trending Section (Video-like Marquee) -->
+            <section class="py-10 bg-gray-50 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 mb-6 flex justify-between items-end">
+                    <h3 class="text-xl font-bold border-l-4 border-black pl-4 uppercase tracking-widest">Trending Now</h3>
+                    <span class="text-xs font-bold underline cursor-pointer">Lihat Semua</span>
+                </div>
+                
+                <div class="relative">
+                    <div class="animate-marquee">
+                        <!-- Duplicate products for seamless loop -->
+                        <div class="flex space-x-4 px-4" id="marquee-content">
+                            <!-- Items will be injected by JS for better management -->
+                        </div>
+                        <div class="flex space-x-4 px-4" id="marquee-content-clone">
+                            <!-- Items will be injected by JS for better management -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category Grid -->
+            <section class="py-20 px-4 max-w-7xl mx-auto">
+                <h3 class="text-2xl font-bold mb-10 border-l-4 border-[#ff4d00] pl-4 uppercase tracking-widest">Koleksi Terbaru</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group cursor-pointer" onclick="showCategoryPLP('Outerwear')">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 bg-white/80 w-full">
+                            <p class="font-bold text-sm">Outerwear</p>
+                        </div>
+                    </div>
+                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group cursor-pointer" onclick="showTshirtPLP()">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 bg-white/80 w-full">
+                            <p class="font-bold text-sm">Tops</p>
+                        </div>
+                    </div>
+                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group cursor-pointer" onclick="showCategoryPLP('Bottoms')">
+                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 bg-white/80 w-full">
+                            <p class="font-bold text-sm">Bottoms</p>
+                        </div>
+                    </div>
+                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group cursor-pointer" onclick="showCategoryPLP('Accessories')">
+                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute bottom-0 left-0 p-4 bg-white/80 w-full">
+                            <p class="font-bold text-sm">Accessories</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Product Listing Page (T-Shirt) -->
+        <div id="tshirt-plp" class="plp-hidden max-w-7xl mx-auto px-4 py-10">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-xs font-bold mb-6 hover:underline uppercase tracking-widest">
+                <i class="fas fa-chevron-left"></i>
+                <span>Kembali</span>
+            </button>
+            <h1 class="text-3xl font-bold mb-8">T-Shirt, Sweat, & Bratop</h1>
+
+            <!-- Sub Category Icons Grid -->
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-4 mb-12">
+                <div class="text-center cursor-pointer group" onclick="showTshirtPLP()">
+                    <div class="aspect-square bg-gray-100 mb-2 border-2 border-black">
+                        <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=200&h=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-bold leading-tight group-hover:underline">Semua T-Shirt, Sweat, & Bratop</p>
+                </div>
+                <div class="text-center cursor-pointer group" onclick="showCategoryPLP('T-Shirt')">
+                    <div class="aspect-square bg-gray-100 mb-2 border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=200&h=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-bold group-hover:underline">T-Shirt</p>
+                </div>
+                <div class="text-center cursor-pointer group" onclick="showCategoryPLP('Sweat & Hoodie')">
+                    <div class="aspect-square bg-gray-100 mb-2 border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=200&h=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-bold group-hover:underline">Koleksi Sweat & Hoodie</p>
+                </div>
+                <div class="text-center cursor-pointer group" onclick="showCategoryPLP('Bratop')">
+                    <div class="aspect-square bg-gray-100 mb-2 border border-gray-200 flex flex-col items-center justify-center p-2">
+                        <span class="text-[10px] font-black tracking-tighter">BRATOP</span>
+                        <span class="text-[8px] opacity-60">Built-in Support</span>
+                    </div>
+                    <p class="text-[10px] font-bold group-hover:underline">Bratop</p>
+                </div>
+                <div class="text-center cursor-pointer group" onclick="showCategoryPLP('UT (Graphic T-Shirt)')">
+                    <div class="aspect-square bg-gray-100 mb-2 border border-gray-200 flex items-center justify-center">
+                        <span class="text-2xl font-black text-red-600">UT</span>
+                    </div>
+                    <p class="text-[10px] font-bold group-hover:underline">UT(Graphic T-Shirt)</p>
+                </div>
+                <div class="text-center cursor-pointer group" onclick="showCategoryPLP('PEACE FOR ALL')">
+                    <div class="aspect-square bg-gray-100 mb-2 border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=200&h=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-bold group-hover:underline">PEACE FOR ALL</p>
+                </div>
+            </div>
+
+            <!-- Store & Filter Bar -->
+            <div class="flex flex-col space-y-4 mb-8">
+                <div class="flex justify-between items-center text-xs">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-store"></i>
+                        <span class="font-bold">Pilih toko untuk mencari stok toko</span>
+                    </div>
+                    <a href="#" class="text-blue-600 underline">Pilih toko</a>
+                </div>
+                <div class="flex flex-wrap gap-2 items-center">
+                    <i class="fas fa-sliders-h mr-2"></i>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Stok tersedia: hanya online</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Jenis kelamin > Kategori</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Penawaran</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Ukuran</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Warna</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Harga</option>
+                    </select>
+                </div>
+                <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <span class="text-sm font-bold">Hasil: 181 produk</span>
+                    <div class="flex items-center space-x-2 cursor-pointer">
+                        <i class="fas fa-sort-amount-down"></i>
+                        <span class="text-sm font-bold">Pilih berdasarkan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-list-container" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Produk akan di-render melalui JavaScript -->
+            </div>
+        </div>
+
+        <!-- Product Listing Page (Polo & Kemeja) -->
+        <div id="polo-plp" class="plp-hidden max-w-7xl mx-auto px-4 py-10">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-xs font-bold mb-6 hover:underline uppercase tracking-widest">
+                <i class="fas fa-chevron-left"></i>
+                <span>Kembali</span>
+            </button>
+            <h1 class="text-3xl font-bold mb-8">Kaos Polo & Kemeja</h1>
+
+            <!-- Sub Category Icons Grid -->
+            <div class="grid grid-cols-3 md:grid-cols-5 gap-4 mb-12">
+                <div class="text-center cursor-pointer group" onclick="showPoloPLP()">
+                    <div class="aspect-square bg-gray-100 mb-2 border-2 border-black">
+                        <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=200&h=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-bold leading-tight group-hover:underline">Semua Kaos Polo & Kemeja</p>
+                </div>
+                <div class="text-center cursor-pointer group" onclick="showCategoryPLP('Kaos Polo')">
+                    <div class="aspect-square bg-gray-100 mb-2 border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=200&h=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-bold group-hover:underline">Kaos Polo</p>
+                </div>
+                <div class="text-center cursor-pointer group" onclick="showCategoryPLP('Kemeja Kasual')">
+                    <div class="aspect-square bg-gray-100 mb-2 border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=200&h=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-bold group-hover:underline">Kemeja Kasual</p>
+                </div>
+                <div class="text-center cursor-pointer group" onclick="showCategoryPLP('Kemeja Formal')">
+                    <div class="aspect-square bg-gray-100 mb-2 border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=200&h=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-bold group-hover:underline">Kemeja Formal</p>
+                </div>
+                <div class="text-center cursor-pointer group" onclick="showCategoryPLP('Flanel')">
+                    <div class="aspect-square bg-gray-100 mb-2 border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=200&h=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <p class="text-[10px] font-bold group-hover:underline">Flanel</p>
+                </div>
+            </div>
+
+            <!-- Store & Filter Bar -->
+            <div class="flex flex-col space-y-4 mb-8">
+                <div class="flex justify-between items-center text-xs">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-store"></i>
+                        <span class="font-bold">Pilih toko untuk mencari stok toko</span>
+                    </div>
+                    <a href="#" class="text-blue-600 underline">Pilih toko</a>
+                </div>
+                <div class="flex flex-wrap gap-2 items-center">
+                    <i class="fas fa-sliders-h mr-2"></i>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Stok tersedia: hanya online</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Jenis kelamin > Kategori</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Penawaran</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Ukuran</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Warna</option>
+                    </select>
+                    <select class="border border-gray-300 rounded-full px-4 py-1.5 text-xs font-bold bg-white focus:outline-none">
+                        <option>Harga</option>
+                    </select>
+                </div>
+                <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <span class="text-sm font-bold">Hasil: 119 produk</span>
+                    <div class="flex items-center space-x-2 cursor-pointer">
+                        <i class="fas fa-sort-amount-down"></i>
+                        <span class="text-sm font-bold">Pilih berdasarkan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="polo-list-container" class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10">
+                <!-- Produk akan di-render melalui JavaScript -->
+            </div>
+        </div>
+
+        <!-- Generic Product Listing Page (Category PLP) -->
+        <div id="category-plp" class="plp-hidden max-w-7xl mx-auto px-4 py-10">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-xs font-bold mb-6 hover:underline uppercase tracking-widest">
+                <i class="fas fa-chevron-left"></i>
+                <span>Kembali</span>
+            </button>
+            <h1 id="category-plp-title" class="text-3xl font-bold mb-8 uppercase">Category Name</h1>
+            
+            <!-- Filter Bar (Simplified) -->
+            <div class="flex justify-between items-center pt-4 border-t border-gray-100 mb-8">
+                <span id="category-product-count" class="text-sm font-bold">Hasil: 40 produk</span>
+                <div class="flex items-center space-x-2 cursor-pointer">
+                    <i class="fas fa-sort-amount-down"></i>
+                    <span class="text-sm font-bold">Pilih berdasarkan</span>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="category-list-container" class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-10">
+                <!-- Produk akan di-render melalui JavaScript -->
+            </div>
+        </div>
+
+        <!-- Address Form Page -->
+        <div id="address-page" class="plp-hidden max-w-2xl mx-auto px-4 py-10">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-xs font-bold mb-8 hover:underline uppercase tracking-widest">
+                <i class="fas fa-chevron-left"></i>
+                <span>Kembali</span>
+            </button>
+
+            <h1 class="text-3xl font-medium mb-4">Daftarkan alamat baru</h1>
+            <p class="text-xs text-gray-700 mb-4">Pastikan alamat pengiriman Anda benar. Jika alamat pengiriman salah, maka akan terjadi pembatalan / penundaan pengiriman.</p>
+            <p class="text-[10px] text-right text-gray-500 mb-6">Wajib diisi <span class="text-blue-600">*</span></p>
+
+            <form class="space-y-6" onsubmit="event.preventDefault(); goBack();">
+                <!-- Nama Depan -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold">Nama depan <span class="text-blue-600">*</span></label>
+                    <input type="text" placeholder="Mohon isi nama depan." class="w-full border border-gray-300 p-3 text-xs focus:outline-none focus:border-black" required>
+                </div>
+
+                <!-- Nama Belakang -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold">Nama belakang <span class="text-blue-600">*</span></label>
+                    <input type="text" placeholder="Mohon isi nama belakang." class="w-full border border-gray-300 p-3 text-xs focus:outline-none focus:border-black" required>
+                </div>
+
+                <!-- Alamat Detail -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold">Alamat detail/Jalan <span class="text-blue-600">*</span></label>
+                    <input type="text" placeholder="Masukkan alamat detail/jalan" class="w-full border border-gray-300 p-3 text-xs focus:outline-none focus:border-black" required>
+                </div>
+
+                <!-- Provinsi -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold">Provinsi <span class="text-blue-600">*</span></label>
+                    <div class="relative">
+                        <select class="w-full border border-gray-300 p-3 text-xs focus:outline-none focus:border-black appearance-none" required>
+                            <option value="">Pilih Provinsi</option>
+                            <option value="jakarta">DKI Jakarta</option>
+                            <option value="jabar">Jawa Barat</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-[10px] pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <!-- Kota -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold">Kota <span class="text-blue-600">*</span></label>
+                    <div class="relative">
+                        <select class="w-full border border-gray-300 p-3 text-xs focus:outline-none focus:border-black appearance-none" required>
+                            <option value="">Silakan pilih kota Anda</option>
+                            <option value="jakarta-selatan">Jakarta Selatan</option>
+                            <option value="bandung">Bandung</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-[10px] pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <!-- Kecamatan -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold">Kecamatan / Kelurahan <span class="text-blue-600">*</span></label>
+                    <div class="relative">
+                        <select class="w-full border border-gray-300 p-3 text-xs focus:outline-none focus:border-black appearance-none" required>
+                            <option value="">Masukkan nama kecamatan/kelurahan</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-[10px] pointer-events-none"></i>
+                    </div>
+                </div>
+
+                <!-- Kode Pos -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold">Kode pos <span class="text-blue-600">*</span></label>
+                    <input type="text" placeholder="Silakan masukkan kode pos." class="w-full border border-gray-300 p-3 text-xs focus:outline-none focus:border-black" required>
+                </div>
+
+                <!-- Telepon -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold">Telepon</label>
+                    <input type="tel" placeholder="Silakan masukkan nomor telepon Anda." class="w-full border border-gray-300 p-3 text-xs focus:outline-none focus:border-black">
+                </div>
+
+                <!-- Nomor Telepon Wajib -->
+                <div class="space-y-2">
+                    <label class="text-xs font-bold">Nomor Telepon <span class="text-blue-600">*</span></label>
+                    <input type="tel" placeholder="Silakan masukkan nomor telepon Anda." class="w-full border border-gray-300 p-3 text-xs focus:outline-none focus:border-black" required>
+                    <p class="text-[9px] text-gray-500 mt-1">Anda mungkin akan dihubungi melalui telepon atau email jika kami memiliki pertanyaan tentang pesanan dan pilihan pengiriman Anda.</p>
+                </div>
+
+                <button type="submit" class="w-full bg-black text-white py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#ff4d00] transition-all mt-8">
+                    KONFIRMASI
+                </button>
+            </form>
+        </div>
+
+        <!-- Checkout Page -->
+        <div id="checkout-page" class="plp-hidden max-w-7xl mx-auto px-4 py-10">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-xs font-bold mb-8 hover:underline uppercase tracking-widest">
+                <i class="fas fa-chevron-left"></i>
+                <span>Kembali</span>
+            </button>
+
+            <h1 class="text-3xl font-medium mb-4">Lanjutkan ke pembayaran</h1>
+            <p class="text-xs text-gray-700 mb-8 pb-4 border-b border-gray-100">Jika Anda membeli tambahan Rp200.000 (termasuk PPN), Anda akan mendapatkan biaya pengiriman gratis.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Left: Shipping & Payment Steps -->
+                <div class="lg:col-span-8 space-y-12">
+                    <!-- Step 1: Opsi Pengiriman -->
+                    <section>
+                        <h2 class="text-2xl font-medium mb-4">1.Opsi pengiriman</h2>
+                        <div class="text-[10px] text-gray-700 mb-6 uppercase tracking-wider">
+                            KHUSUS KLIK & AMBIL<br>
+                            Klik tombol <i> untuk lihat estimasi waktu pengiriman.
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Delivery Option 1 -->
+                             <div onclick="showAddressForm()" class="border border-gray-400 p-4 cursor-pointer hover:border-black transition-all">
+                                 <p class="text-xs font-bold mb-1">Kirim ke alamat</p>
+                                 <p class="text-xs text-gray-600">Pengiriman: TBD</p>
+                             </div>
+                            <!-- Delivery Option 2 -->
+                            <div class="border border-gray-200 p-4 cursor-pointer hover:border-black transition-all flex justify-between items-start">
+                                <div>
+                                    <p class="text-xs font-bold mb-1">Click & Collect</p>
+                                    <p class="text-xs text-gray-600">Pengiriman: Gratis</p>
+                                </div>
+                                <i class="fas fa-info-circle text-xs text-gray-400"></i>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Step 2: Pilihan Pembayaran -->
+                    <section class="opacity-30 pointer-events-none">
+                        <h2 class="text-2xl font-medium mb-2 text-gray-400">2.Pilihan pembayaran</h2>
+                        <p class="text-xs text-gray-400 italic">Silakan pilih metode pengiriman.</p>
+                    </section>
+
+                    <!-- Footer Security Note -->
+                    <div class="flex items-center space-x-3 pt-10 text-[10px] text-gray-500">
+                        <i class="fas fa-lock"></i>
+                        <p>Kami mengenkripsi semua informasi sensitif Anda dengan teknologi enkripsi <span class="text-blue-600 underline cursor-pointer">TLS (Transport Layer Security)</span>.</p>
+                    </div>
+                </div>
+
+                <!-- Right: Summary -->
+                <div class="lg:col-span-4">
+                    <div class="bg-gray-50 p-8 space-y-8 sticky top-24 border border-gray-100">
+                        <div class="flex justify-between items-baseline border-b border-gray-200 pb-4">
+                            <h3 class="text-sm font-bold uppercase tracking-widest">Ringkasan pesanan</h3>
+                            <span id="checkout-summary-count" class="text-xs font-bold text-gray-600">1 Produk</span>
+                        </div>
+
+                        <div class="space-y-4 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Total Item</span>
+                                <span id="checkout-summary-total">Rp0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Pengiriman</span>
+                                <span class="font-bold">TBD</span>
+                            </div>
+                            <div class="flex justify-between text-base font-black pt-6 border-t border-gray-200">
+                                <span>Total pesanan</span>
+                                <span id="checkout-summary-grand-total">Rp0</span>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-gray-500">
+                                <span>Termasuk PPN</span>
+                                <span id="checkout-summary-ppn">Rp0</span>
+                            </div>
+                        </div>
+
+                        <button class="w-full flex justify-between items-center bg-white border border-gray-200 px-4 py-4 text-xs font-bold hover:bg-gray-50 transition-all">
+                            <span><i class="fas fa-ticket-alt mr-2"></i> Kupon (1)</span>
+                            <i class="fas fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Detail Page (PDP) -->
+        <div id="product-detail" class="pdp-hidden max-w-7xl mx-auto px-4 py-10">
+            <button onclick="goBack()" class="flex items-center space-x-2 text-xs font-bold mb-8 hover:underline uppercase tracking-widest">
+                <i class="fas fa-chevron-left"></i>
+                <span>Kembali</span>
+            </button>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Left: Image Gallery (2x2 Grid) -->
+                <div class="lg:col-span-7 grid grid-cols-2 gap-1">
+                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group">
+                        <img id="pdp-main-img" src="" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-white/80 px-2 py-1 text-[8px] font-black uppercase italic tracking-widest">POJOKOUTFIT : C</div>
+                        <button class="absolute bottom-4 left-4 w-8 h-8 bg-black/50 text-white rounded-full flex items-center justify-center text-xs"><i class="fas fa-search-plus"></i></button>
+                    </div>
+                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+                        <img id="pdp-gallery-1" src="" class="w-full h-full object-cover">
+                        <div class="absolute bottom-4 right-4 text-[8px] text-gray-500 font-bold bg-white/80 px-2 py-1">Tinggi model 176 cm<br>Ukuran pakaian: M</div>
+                    </div>
+                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+                        <img id="pdp-gallery-2" src="" class="w-full h-full object-cover">
+                    </div>
+                    <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+                        <img id="pdp-gallery-3" src="" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Right: Product Info Panel -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <h1 id="pdp-title" class="text-2xl font-bold mb-2">Nama Produk</h1>
+                        <span class="inline-block border border-gray-300 px-3 py-1 text-[10px] font-bold uppercase tracking-widest">Bestseller</span>
+                    </div>
+
+                    <!-- Color Selection -->
+                    <div class="space-y-4">
+                        <p class="text-xs font-bold">Warna: <span id="selected-color-name" class="text-gray-500 font-normal uppercase">31 BEIGE</span></p>
+                        <div id="pdp-color-swatches" class="flex flex-wrap gap-3">
+                            <!-- Swatches injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Size Selection -->
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <p class="text-xs font-bold">Ukuran: <span id="selected-size-name" class="text-gray-500 font-normal uppercase">Uniseks M</span></p>
+                            <a href="#" class="text-[10px] font-bold underline flex items-center"><i class="fas fa-ruler-combined mr-1"></i> Ukuran</a>
+                        </div>
+                        <div class="grid grid-cols-5 gap-2">
+                            <button onclick="selectSize('XS', this)" class="size-btn border border-gray-300 py-2 text-xs font-bold hover:border-black transition-all">XS</button>
+                            <button onclick="selectSize('S', this)" class="size-btn border border-gray-300 py-2 text-xs font-bold hover:border-black transition-all">S</button>
+                            <button onclick="selectSize('M', this)" class="size-btn border border-black bg-black text-white py-2 text-xs font-bold transition-all active">M</button>
+                            <button onclick="selectSize('L', this)" class="size-btn border border-gray-300 py-2 text-xs font-bold hover:border-black transition-all">L</button>
+                            <button onclick="selectSize('XL', this)" class="size-btn border border-gray-300 py-2 text-xs font-bold hover:border-black transition-all">XL</button>
+                            <button onclick="selectSize('XXL', this)" class="size-btn border border-gray-300 py-2 text-xs font-bold hover:border-black transition-all">XXL</button>
+                            <button onclick="selectSize('3XL', this)" class="size-btn border border-gray-300 py-2 text-xs font-bold hover:border-black transition-all">3XL</button>
+                            <button class="size-btn border border-gray-300 py-2 text-xs font-bold opacity-30 cursor-not-allowed">4XL</button>
+                        </div>
+                    </div>
+
+                    <!-- Price & Rating -->
+                    <div class="flex justify-between items-center py-6 border-y border-gray-100">
+                        <p id="pdp-price" class="text-3xl font-bold">Rp0</p>
+                        <div class="flex items-center space-x-1 text-xs">
+                            <div class="flex text-black">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="font-bold underline">(45)</span>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center border border-gray-300 rounded-full px-4 py-2 space-x-6">
+                                <button class="text-xl font-light hover:text-[#ff4d00] transition-colors">−</button>
+                                <span class="font-bold">1</span>
+                                <button class="text-xl font-light hover:text-[#ff4d00] transition-colors">+</button>
+                            </div>
+                            <button onclick="addToCart()" class="flex-1 bg-black text-white py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#ff4d00] transition-all shadow-xl">
+                                Tambahkan ke Keranjang
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-gray-500 font-bold italic">Stok tersedia</p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex space-x-4 pt-4">
+                        <button class="w-12 h-12 border border-gray-300 rounded-full flex items-center justify-center hover:border-black transition-all"><i class="far fa-share-square"></i></button>
+                        <button class="flex-1 border border-gray-300 rounded-full py-3 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:border-black transition-all">
+                            <i class="far fa-heart mr-2"></i> Tambahkan ke Wishlist
+                        </button>
+                    </div>
+
+                    <!-- Find in Store -->
+                    <div class="pt-10 space-y-6">
+                        <h3 class="text-xl font-bold">Temukan di toko</h3>
+                        <p class="text-xs text-gray-600">Anda dapat memeriksa status stok toko di sini.</p>
+                        <div class="flex justify-between items-center py-4 border-b border-gray-100">
+                            <span class="text-xs font-bold text-blue-600 underline cursor-pointer">Pilih toko</span>
+                        </div>
+                        <div class="flex justify-between items-center py-4 border-b border-gray-100">
+                            <span class="text-xs font-bold">Toko terdekat dengan stok tersedia</span>
+                            <i class="fas fa-plus text-[10px]"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shopping Cart Page -->
+        <div id="cart-page" class="plp-hidden max-w-7xl mx-auto px-4 py-10">
+            <!-- SPayLater Banner -->
+            <div class="bg-[#fff8f5] border border-[#ff4d00]/20 p-4 mb-8 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="h-8 flex items-center space-x-1">
+                        <span class="text-[#ff4d00] font-black italic text-lg leading-none">S</span>
+                        <div class="flex flex-col leading-none">
+                            <span class="text-xs font-bold text-gray-800">PayLater</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-red-600 font-black text-sm uppercase">PENAWARAN SPESIAL</h4>
+                        <p class="text-[10px] text-gray-700">Potongan s.d. <span class="font-bold">Rp50.000</span>, Cicilan Min. <span class="font-bold">3 Bulan</span></p>
+                        <p class="text-[10px] text-gray-500">Bagi pengguna baru SPAYLATER Menggunakan <span class="bg-[#ff4d00] text-white px-1 rounded text-[8px] font-bold">APLIKASI ShopeePay</span></p>
+                        <p class="text-[10px] text-gray-500">Periode <span class="font-bold">13 April - 13 Mei 2026</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="text-3xl font-black italic mb-2">Keranjang belanja</h1>
+            <p class="text-[10px] text-gray-500 mb-6">Belanjakan Rp200.000 lagi untuk pengiriman gratis.<br><span class="text-blue-600 underline cursor-pointer">Lihat apa yang direkomendasikan untuk Anda</span></p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Left: Cart Items -->
+                <div class="lg:col-span-8 space-y-6">
+                    <div id="cart-items-container">
+                        <!-- Items will be injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Right: Summary -->
+                <div class="lg:col-span-4">
+                    <div class="border border-gray-200 p-6 space-y-6 sticky top-24">
+                        <h3 class="text-lg font-bold border-b border-gray-100 pb-4">Ringkasan pesanan</h3>
+                        
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between font-bold">
+                                <span>1 Produk</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Total item</span>
+                                <span id="summary-total-item">Rp0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Pengiriman</span>
+                                <span class="font-bold">TBD</span>
+                            </div>
+                            <div class="flex justify-between text-lg font-black pt-4 border-t border-gray-100">
+                                <span>Total pesanan</span>
+                                <span id="summary-grand-total">Rp0</span>
+                            </div>
+                            <p class="text-[10px] text-right text-gray-500">Termasuk PPN <span id="summary-ppn">Rp0</span></p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <button class="w-full flex justify-between items-center border border-gray-300 px-4 py-3 text-xs font-bold">
+                                <span><i class="fas fa-ticket-alt mr-2"></i> Kupon</span>
+                                <i class="fas fa-chevron-right text-[10px]"></i>
+                            </button>
+                            <button class="w-full flex justify-between items-center border border-gray-300 px-4 py-3 text-xs font-bold">
+                                <span><i class="fas fa-gift mr-2"></i> Jadikan sebagai kado</span>
+                                <i class="fas fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+
+                        <div class="text-[10px] text-gray-500 space-y-1">
+                            <p>Belanjakan Rp200.000 lagi untuk pengiriman gratis.</p>
+                            <p class="text-blue-600 underline cursor-pointer">Lihat apa yang direkomendasikan untuk Anda</p>
+                            <p>Produk pilihan Anda akan disimpan hingga 30 menit setelah tombol "Lanjutkan Pembelian" ditekan.</p>
+                        </div>
+
+                        <button onclick="showCheckoutPage()" class="w-full bg-black text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-[#ff4d00] transition-all">
+                            LANJUTKAN KE PEMBAYARAN
+                        </button>
+                        <button onclick="showLanding()" class="w-full border border-gray-300 py-4 text-xs font-black uppercase tracking-widest hover:bg-gray-50 transition-all mt-3">
+                            LANJUT BELANJA
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendation Sections -->
+            <div class="mt-20 space-y-20">
+                <section>
+                    <h3 class="text-xl font-bold mb-2">Anda mungkin juga suka</h3>
+                    <p class="text-[10px] text-gray-500 mb-8 pb-4 border-b border-gray-100">Belanjakan Rp200.000 lagi untuk pengiriman gratis.</p>
+                    
+                    <div class="space-y-12">
+                        <div>
+                            <h4 class="text-sm font-bold mb-6 uppercase tracking-wider">Baru saja dilihat</h4>
+                            <div id="recently-viewed-container" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                <!-- Items injected by JS -->
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold mb-6 uppercase tracking-wider">Recommended Based on Your Cart</h4>
+                            <div id="cart-based-reco-container" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                <!-- Items injected by JS -->
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold mb-6 uppercase tracking-wider">Women Trending Best Sellers</h4>
+                            <div id="trending-bestsellers-container" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                <!-- Items injected by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Success Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-[200] hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/50" onclick="closeCartModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-[95%] max-w-lg shadow-2xl rounded-sm">
+            <div class="p-6 md:p-8">
+                <!-- Header -->
+                <div class="flex justify-between items-start mb-6 border-b border-gray-100 pb-4">
+                    <h2 class="text-lg font-bold">Produk ditambahkan ke keranjang</h2>
+                    <button onclick="closeCartModal()" class="text-2xl hover:text-gray-500 leading-none">&times;</button>
+                </div>
+
+                <!-- Selected Product Details -->
+                <div class="flex space-x-6 mb-8">
+                    <div class="w-32 aspect-[3/4] bg-gray-100 flex-shrink-0">
+                        <img id="cart-modal-img" src="" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 space-y-2">
+                        <h3 id="cart-modal-title" class="text-sm font-bold leading-tight">Nama Produk</h3>
+                        <p class="text-[10px] text-gray-500 uppercase">Warna: <span id="cart-modal-color" class="font-bold">Putih</span></p>
+                        <p class="text-[10px] text-gray-500 uppercase">Ukuran: <span id="cart-modal-size" class="font-bold">M</span></p>
+                        <p class="text-[10px] text-gray-500">Jumlah: <span class="font-bold">1</span></p>
+                        <p id="cart-modal-price" class="text-lg font-bold pt-2">Rp0</p>
+                    </div>
+                </div>
+
+                <!-- Footer Buttons -->
+                <div class="flex flex-col space-y-3">
+                    <button onclick="closeCartModal(); showCheckoutPage();" class="w-full bg-black text-white py-4 text-xs font-black uppercase tracking-widest hover:bg-[#ff4d00] transition-all">
+                        Lanjutkan ke Pembayaran
+                    </button>
+                    <button onclick="closeCartModal(); showCartPage();" class="w-full border border-gray-300 py-4 text-xs font-black uppercase tracking-widest hover:bg-gray-50 transition-all">
+                        Lihat Keranjang
+                    </button>
+                    <button onclick="closeCartModal(); showLanding();" class="w-full border border-gray-300 py-4 text-xs font-black uppercase tracking-widest hover:bg-gray-50 transition-all">
+                        Lanjut Belanja
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-100 py-10 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 space-y-4 md:space-y-0">
+            <p>&copy; POJOKOUTFIT CO., LTD. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:underline">Bantuan</a>
+                <a href="#" class="hover:underline">Kebijakan Privasi</a>
+                <a href="#" class="hover:underline">Syarat & Ketentuan</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Contact Button -->
+    <div class="fixed bottom-6 right-6 z-[100]">
+        <!-- Contact Menu (Hidden by default) -->
+        <div id="contact-menu" class="hidden mb-4 space-y-3 flex flex-col items-end transform transition-all duration-300 origin-bottom scale-0 opacity-0">
+            <a href="https://wa.me/6281234567890" target="_blank" class="flex items-center space-x-3 bg-white px-4 py-2 rounded-full shadow-lg border border-gray-100 hover:bg-gray-50 transition-all group">
+                <span class="text-xs font-bold text-gray-600">WhatsApp</span>
+                <div class="w-10 h-10 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </div>
+            </a>
+            <a href="mailto:support@pojokoutfit.com" class="flex items-center space-x-3 bg-white px-4 py-2 rounded-full shadow-lg border border-gray-100 hover:bg-gray-50 transition-all group">
+                <span class="text-xs font-bold text-gray-600">Email Kami</span>
+                <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                    <i class="far fa-envelope text-lg"></i>
+                </div>
+            </a>
+            <a href="#" class="flex items-center space-x-3 bg-white px-4 py-2 rounded-full shadow-lg border border-gray-100 hover:bg-gray-50 transition-all group">
+                <span class="text-xs font-bold text-gray-600">Live Chat</span>
+                <div class="w-10 h-10 bg-[#ff4d00] text-white rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
+                    <i class="far fa-comments text-lg"></i>
+                </div>
+            </a>
+        </div>
+
+        <!-- Main Toggle Button -->
+        <button onclick="toggleContactMenu()" id="contact-toggle" class="w-14 h-14 bg-black text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-[#ff4d00] transition-all duration-300 group relative">
+            <i class="fas fa-headset text-xl group-hover:rotate-12 transition-transform"></i>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full border-2 border-white animate-pulse"></span>
+        </button>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function goBack() {
+            if (window.history.state) {
+                window.history.back();
+            } else {
+                showLanding(false);
+            }
+        }
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', (event) => {
+            const state = event.state;
+            if (!state || state.type === 'landing') {
+                showLanding(false);
+            } else if (state.type === 'tshirt-plp') {
+                showTshirtPLP(false);
+            } else if (state.type === 'polo-plp') {
+                showPoloPLP(false);
+            } else if (state.type === 'category-plp') {
+                showCategoryPLP(state.category, false);
+            } else if (state.type === 'cart-page') {
+                showCartPage(false);
+            } else if (state.type === 'checkout-page') {
+                showCheckoutPage(false);
+            } else if (state.type === 'address-page') {
+                showAddressForm(false);
+            } else if (state.type === 'product-detail') {
+                showProductDetail(state.productId, false);
+            }
+        });
+
+        function showCartPage(pushHistory = true) {
+            if (pushHistory) history.pushState({ type: 'cart-page' }, '', '#cart');
+
+            document.getElementById('landing-page').classList.add('plp-hidden');
+            document.getElementById('tshirt-plp').classList.add('plp-hidden');
+            document.getElementById('polo-plp').classList.add('plp-hidden');
+            document.getElementById('category-plp').classList.add('plp-hidden');
+            document.getElementById('product-detail').classList.add('pdp-hidden');
+            document.getElementById('checkout-page').classList.add('plp-hidden');
+            document.getElementById('address-page').classList.add('plp-hidden');
+            document.getElementById('cart-page').classList.remove('plp-hidden');
+            
+            renderCartItems();
+            renderCartRecommendations();
+            window.scrollTo(0, 0);
+        }
+
+        function showAddressForm(pushHistory = true) {
+            if (pushHistory) history.pushState({ type: 'address-page' }, '', '#address');
+
+            document.getElementById('landing-page').classList.add('plp-hidden');
+            document.getElementById('tshirt-plp').classList.add('plp-hidden');
+            document.getElementById('polo-plp').classList.add('plp-hidden');
+            document.getElementById('category-plp').classList.add('plp-hidden');
+            document.getElementById('product-detail').classList.add('pdp-hidden');
+            document.getElementById('cart-page').classList.add('plp-hidden');
+            document.getElementById('checkout-page').classList.add('plp-hidden');
+            document.getElementById('address-page').classList.remove('plp-hidden');
+            
+            window.scrollTo(0, 0);
+        }
+
+        function showCheckoutPage(pushHistory = true) {
+            if (pushHistory) history.pushState({ type: 'checkout-page' }, '', '#checkout');
+
+            document.getElementById('landing-page').classList.add('plp-hidden');
+            document.getElementById('tshirt-plp').classList.add('plp-hidden');
+            document.getElementById('polo-plp').classList.add('plp-hidden');
+            document.getElementById('category-plp').classList.add('plp-hidden');
+            document.getElementById('product-detail').classList.add('pdp-hidden');
+            document.getElementById('cart-page').classList.add('plp-hidden');
+            document.getElementById('address-page').classList.add('plp-hidden');
+            document.getElementById('checkout-page').classList.remove('plp-hidden');
+            
+            renderCheckoutSummary();
+            window.scrollTo(0, 0);
+        }
+
+        function renderCheckoutSummary() {
+            let total = 0;
+            cart.forEach(item => {
+                total += parseInt(item.price.replace(/[^0-9]/g, ''));
+            });
+
+            const ppn = Math.round(total * 0.11);
+            document.getElementById('checkout-summary-count').innerText = `${cart.length} Produk`;
+            document.getElementById('checkout-summary-total').innerText = `Rp${total.toLocaleString('id-ID')}`;
+            document.getElementById('checkout-summary-grand-total').innerText = `Rp${total.toLocaleString('id-ID')}`;
+            document.getElementById('checkout-summary-ppn').innerText = `Rp${ppn.toLocaleString('id-ID')}`;
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="text-center py-20 text-gray-500 font-bold uppercase tracking-widest">Keranjang Anda kosong</p>';
+                document.getElementById('summary-total-item').innerText = 'Rp0';
+                document.getElementById('summary-grand-total').innerText = 'Rp0';
+                document.getElementById('summary-ppn').innerText = 'Rp0';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                const priceValue = parseInt(item.price.replace(/[^0-9]/g, ''));
+                total += priceValue;
+                return `
+                    <div class="flex space-x-8 border-b border-gray-100 pb-12 group">
+                        <div class="w-80 aspect-[3/4] bg-gray-100 flex-shrink-0">
+                            <img src="${item.image}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-lg font-black italic leading-tight max-w-[80%]">${item.name}</h3>
+                                    <button class="text-gray-400 hover:text-black"><i class="far fa-heart text-lg"></i></button>
+                                </div>
+                                <div class="mt-4 space-y-1">
+                                    <p class="text-[10px] text-gray-400 italic uppercase">Warna: ${item.color}</p>
+                                    <p class="text-[10px] text-gray-400 italic uppercase">Ukuran: ${item.size}</p>
+                                </div>
+                                <p class="text-xl font-black italic mt-6">${item.price}</p>
+                                <p class="text-[8px] text-gray-400 mt-2 uppercase tracking-widest">Dibuat dari Bahan Daur Ulang</p>
+                            </div>
+                            
+                            <div class="flex justify-between items-end mt-10">
+                                <div class="flex items-center border border-gray-200 rounded-full px-4 py-2 space-x-8">
+                                    <button class="text-2xl hover:text-[#ff4d00] transition-colors">−</button>
+                                    <span class="text-sm font-bold">1</span>
+                                    <button class="text-2xl hover:text-[#ff4d00] transition-colors">+</button>
+                                </div>
+                                <div class="text-right">
+                                    <button onclick="removeFromCart(${index})" class="text-[10px] font-bold text-gray-400 hover:text-black underline mb-3">Hapus</button>
+                                    <p class="text-xs text-gray-400 uppercase italic">Subtotal: <span class="font-black text-black ml-2 not-italic">RP ${item.price.replace('Rp', '')}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const ppn = Math.round(total * 0.11);
+            document.getElementById('summary-total-item').innerText = `Rp${total.toLocaleString('id-ID')}`;
+            document.getElementById('summary-grand-total').innerText = `Rp${total.toLocaleString('id-ID')}`;
+            document.getElementById('summary-ppn').innerText = `Rp${ppn.toLocaleString('id-ID')}`;
+        }
+
+        function renderCartRecommendations() {
+            const containers = [
+                'recently-viewed-container',
+                'cart-based-reco-container',
+                'trending-bestsellers-container'
+            ];
+
+            const baseProducts = [...products, ...poloProducts];
+
+            containers.forEach(id => {
+                const container = document.getElementById(id);
+                if (!container) return;
+
+                const shuffled = [...baseProducts].sort(() => 0.5 - Math.random());
+                const selected = shuffled.slice(0, 5);
+
+                container.innerHTML = selected.map(product => `
+                    <div class="group cursor-pointer" onclick="showProductDetail(${product.id})">
+                        <div class="aspect-[3/4] bg-gray-100 mb-3 overflow-hidden relative">
+                            <img src="${product.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <button class="absolute bottom-3 right-3 text-gray-400 hover:text-black"><i class="far fa-heart text-xs"></i></button>
+                        </div>
+                        <div class="flex space-x-1 mb-1">
+                            ${product.colors.slice(0, 4).map(color => `
+                                <div class="w-2.5 h-2.5 rounded-full border border-gray-300" style="background-color: ${color}"></div>
+                            `).join('')}
+                        </div>
+                        <p class="text-[9px] text-gray-400 uppercase font-bold mb-0.5">Wanita, XS-3XL</p>
+                        <h4 class="text-[10px] font-bold leading-tight mb-1 group-hover:underline line-clamp-2">${product.name}</h4>
+                        <p class="text-xs font-bold">${product.price}</p>
+                        <p class="text-[8px] text-gray-400 mt-1 uppercase">Dibuat dari Bahan Daur Ulang</p>
+                        <div class="flex items-center space-x-1 text-[8px] mt-1.5">
+                            <div class="flex text-black">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-500">(41)</span>
+                        </div>
+                    </div>
+                `).join('');
+            });
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-count-badge');
+            if (cart.length > 0) {
+                badge.innerText = cart.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            renderCartItems();
+            updateCartBadge();
+        }
+
+        function addToCart() {
+            const productTitle = document.getElementById('pdp-title').innerText;
+            const productPrice = document.getElementById('pdp-price').innerText;
+            const productImage = document.getElementById('pdp-main-img').src;
+            const selectedColor = document.getElementById('selected-color-name').innerText;
+            const selectedSize = document.getElementById('selected-size-name').innerText;
+            
+            // Add to cart array
+            cart.push({
+                name: productTitle,
+                price: productPrice,
+                image: productImage,
+                color: selectedColor,
+                size: selectedSize.replace('Uniseks ', '')
+            });
+
+            updateCartBadge();
+
+            // Update modal content with selected product
+            document.getElementById('cart-modal-title').innerText = productTitle;
+            document.getElementById('cart-modal-price').innerText = productPrice;
+            document.getElementById('cart-modal-img').src = productImage;
+            document.getElementById('cart-modal-color').innerText = selectedColor;
+            document.getElementById('cart-modal-size').innerText = selectedSize.replace('Uniseks ', '');
+            
+            // Show Modal
+            document.getElementById('cart-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeCartModal() {
+            document.getElementById('cart-modal').classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function toggleContactMenu() {
+            const menu = document.getElementById('contact-menu');
+            const toggleBtn = document.getElementById('contact-toggle');
+            const icon = toggleBtn.querySelector('i');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                // Trigger animation after removing hidden
+                setTimeout(() => {
+                    menu.classList.remove('scale-0', 'opacity-0');
+                    menu.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                icon.className = 'fas fa-times text-xl';
+            } else {
+                menu.classList.add('scale-0', 'opacity-0');
+                menu.classList.remove('scale-100', 'opacity-100');
+                icon.className = 'fas fa-headset text-xl';
+                // Wait for animation to finish before hiding
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Data Produk Riil dengan Gambar dari Unsplash (Bebas Blokir)
+        const products = [
+            {
+                id: 1,
+                name: "Kaos Crew Neck Lengan Pendek (AIRism Cotton)",
+                price: "Rp199.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=750&auto=format&fit=crop",
+                colors: ["#ffffff", "#000000", "#323232", "#e0e0e0"]
+            },
+            {
+                id: 2,
+                name: "Kaos Oversize Lengan Siku (Uniqlo U)",
+                price: "Rp299.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=750&auto=format&fit=crop",
+                colors: ["#5d4037", "#212121", "#f5f5dc"]
+            },
+            {
+                id: 3,
+                name: "Kaos Kerah Bulat Lengan Pendek",
+                price: "Rp149.000",
+                category: "WANITA • XS-3XL",
+                image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=750&auto=format&fit=crop",
+                colors: ["#ffc107", "#009688", "#ffffff"]
+            },
+            {
+                id: 4,
+                name: "Kaos Rib Kerah Bulat Lengan 1/2",
+                price: "Rp199.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=750&auto=format&fit=crop",
+                colors: ["#e91e63", "#9c27b0", "#673ab7"]
+            },
+            {
+                id: 5,
+                name: "UT Graphic T-Shirt (Studio Ghibli)",
+                price: "Rp199.000",
+                category: "UNISEX • XS-XXL",
+                image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=750&auto=format&fit=crop",
+                colors: ["#ffffff"]
+            },
+            {
+                id: 6,
+                name: "Kaos Polo Dry Pique Lengan Pendek",
+                price: "Rp199.000",
+                category: "WANITA • S-XXL",
+                image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=750&auto=format&fit=crop",
+                colors: ["#0d47a1", "#1b5e20", "#b71c1c"]
+            },
+            {
+                id: 7,
+                name: "Kaos Kerah Persegi Lengan Pendek",
+                price: "Rp199.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1527719327859-c6ce80353573?q=80&w=750&auto=format&fit=crop",
+                colors: ["#212121", "#eeeeee"]
+            },
+            {
+                id: 8,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+              id: 9,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 10,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 11,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            }, 
+            {
+                id: 12,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 13,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 14,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 15,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 16,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 17,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 18,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 19,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+            {
+                id: 20,
+                name: "Kaos Tanpa Lengan (AIRism Cotton)",
+                price: "Rp129.000",
+                category: "WANITA • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#f5f5f5", "#212121"]
+            },
+ 
+        ];
+
+        const poloProducts = [
+            {
+                id: 101,
+                name: "Kaos Polo Dry Pique Tipping",
+                price: "Rp119.000",
+                category: "Uniseks • XS-XXL",
+                image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=750&auto=format&fit=crop",
+                colors: ["#ffffff", "#000000", "#000080"],
+                tag: "Dibuat dari Bahan Daur Ulang"
+            },
+            {
+                id: 102,
+                name: "Kaos Polo Dry Pique Garis | Kecil",
+                price: "Rp99.000",
+                category: "Uniseks • XS-XXL",
+                image: "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?q=80&w=750&auto=format&fit=crop",
+                colors: ["#ffcdd2", "#c8e6c9", "#bbdefb"],
+                tag: "Dibuat dari Bahan Daur Ulang"
+            },
+            {
+                id: 103,
+                name: "Kaos Polo Dry Pique Motif",
+                price: "Rp149.000",
+                category: "Uniseks • XS-XXL",
+                image: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=750&auto=format&fit=crop",
+                colors: ["#4caf50", "#2196f3", "#f44336"],
+                tag: "Dibuat dari Bahan Daur Ulang"
+            },
+            {
+                id: 104,
+                name: "Kaos Polo Dry Pique Garis | Lebar",
+                price: "Rp149.000",
+                category: "Uniseks • XS-XXL",
+                image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=750&auto=format&fit=crop",
+                colors: ["#37474f", "#795548"],
+                tag: "Dibuat dari Bahan Daur Ulang"
+            },
+            {
+                id: 105,
+                name: "Kaos Polo Dry Pique Garis",
+                price: "Rp149.000",
+                category: "Uniseks • XS-XXL",
+                image: "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?q=80&w=750&auto=format&fit=crop",
+                colors: ["#1a237e", "#004d40"],
+                tag: "Dibuat dari Bahan Daur Ulang"
+            },
+            {
+                id: 106,
+                name: "AIRism Katun Kaos Polo Pique",
+                price: "Rp149.000",
+                category: "Uniseks • XS-XXL",
+                image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=750&auto=format&fit=crop",
+                colors: ["#000000", "#ffffff", "#808080"],
+                tag: "Dibuat dari Bahan Daur Ulang"
+            },
+            {
+                id: 107,
+                name: "AIRism Katun Kaos Polo Pique",
+                price: "Rp129.000",
+                oldPrice: "Rp349.000",
+                category: "Uniseks • XS",
+                image: "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?q=80&w=750&auto=format&fit=crop",
+                colors: ["#607d8b"],
+                tag: "Sale (selama persediaan masih ada)"
+            },
+            {
+                id: 108,
+                name: "AIRism Katun Kaos Polo Pique",
+                price: "Rp349.000",
+                category: "Uniseks • XS",
+                image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=750&auto=format&fit=crop",
+                colors: ["#556b2f"],
+                tag: "Dibuat dari Bahan Daur Ulang"
+            }
+        ];
+
+        function renderProducts() {
+            const container = document.getElementById('product-list-container');
+            if (!container) {
+                console.error("Error: Element 'product-list-container' not found in DOM.");
+                return;
+            }
+            
+            let html = '';
+            // Render 40 products (10 rows of 4) based on products data
+            for (let i = 0; i < 40; i++) {
+                const product = products[i % products.length];
+                html += `
+                <div class="group cursor-pointer relative" onclick="showProductDetail(${product.id})">
+                    <div class="aspect-[3/4] bg-gray-100 mb-4 overflow-hidden relative">
+                        <img src="${product.image}${product.image.includes('?') ? '&' : '?'}sig=ts-${i}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="flex space-x-1 mb-2">
+                        ${product.colors.map(color => `
+                            <div class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${color}"></div>
+                        `).join('')}
+                    </div>
+                    <p class="text-[10px] text-gray-500 uppercase font-bold mb-1">${product.category}</p>
+                    <h3 class="text-xs font-bold mb-2 group-hover:underline">${product.name}</h3>
+                    <p class="font-bold text-sm">${product.price}</p>
+                </div>
+            `;
+            }
+            container.innerHTML = html;
+        }
+
+        // Helper for Color Names
+        const colorMap = {
+            "#ffffff": "00 WHITE",
+            "#000000": "09 BLACK",
+            "#323232": "08 DARK GRAY",
+            "#e0e0e0": "01 LIGHT GRAY",
+            "#5d4037": "35 BROWN",
+            "#212121": "07 GRAY",
+            "#f5f5dc": "31 BEIGE",
+            "#ffc107": "42 YELLOW",
+            "#009688": "54 GREEN",
+            "#e91e63": "12 PINK",
+            "#9c27b0": "76 PURPLE",
+            "#673ab7": "72 VIOLET",
+            "#503342": "17 RED",
+            "#0d47a1": "69 NAVY",
+            "#1b5e20": "58 DARK GREEN",
+            "#b71c1c": "15 RED",
+            "#eeeeee": "02 OFF WHITE",
+            "#f5f5f5": "03 LIGHT GRAY",
+            "#000080": "69 NAVY",
+            "#ffcdd2": "10 PINK",
+            "#c8e6c9": "51 LIGHT GREEN",
+            "#bbdefb": "61 LIGHT BLUE",
+            "#4caf50": "54 GREEN",
+            "#2196f3": "63 BLUE",
+            "#f44336": "15 RED",
+            "#37474f": "08 DARK GRAY",
+            "#795548": "36 BROWN",
+            "#1a237e": "68 BLUE",
+            "#004d40": "57 GREEN",
+            "#808080": "06 GRAY",
+            "#607d8b": "05 GRAY",
+            "#556b2f": "56 OLIVE"
+        };
+
+        function getColorName(hex) {
+            return colorMap[hex.toLowerCase()] || "COLOR " + hex;
+        }
+
+        function showProductDetail(productId, pushHistory = true) {
+            if (pushHistory) history.pushState({ type: 'product-detail', productId: productId }, '', `#product-${productId}`);
+
+            let product = products.find(p => p.id === productId);
+            if (!product) {
+                product = poloProducts.find(p => p.id === productId);
+            }
+            if (!product) return;
+
+            // Update PDP Content
+            document.getElementById('pdp-title').innerText = product.name;
+            document.getElementById('pdp-price').innerText = product.price;
+            document.getElementById('pdp-main-img').src = product.image;
+            document.getElementById('pdp-gallery-1').src = product.image;
+            document.getElementById('pdp-gallery-2').src = product.image;
+            document.getElementById('pdp-gallery-3').src = product.image;
+
+            // Set Initial Color Name
+            document.getElementById('selected-color-name').innerText = getColorName(product.colors[0]);
+
+            // Render Swatches
+            const swatchesContainer = document.getElementById('pdp-color-swatches');
+            swatchesContainer.innerHTML = product.colors.map((color, index) => `
+                <button class="color-btn w-8 h-8 rounded-full border border-gray-300 ${index === 0 ? 'active ring-2 ring-black ring-offset-2' : ''}" 
+                        style="background-color: ${color}"
+                        onclick="selectColor('${color}', this)"></button>
+            `).join('');
+
+            // Reset size buttons to initial state (M active)
+            const sizeButtons = document.querySelectorAll('.size-btn');
+            sizeButtons.forEach(btn => {
+                if (btn.innerText === 'M') {
+                    btn.classList.add('active', 'bg-black', 'text-white', 'border-black');
+                    document.getElementById('selected-size-name').innerText = "Uniseks " + btn.innerText;
+                } else {
+                    btn.classList.remove('active', 'bg-black', 'text-white', 'border-black');
+                }
+            });
+
+            // View Switching
+            document.getElementById('landing-page').classList.add('plp-hidden');
+            document.getElementById('tshirt-plp').classList.add('plp-hidden');
+            document.getElementById('polo-plp').classList.add('plp-hidden');
+            document.getElementById('category-plp').classList.add('plp-hidden');
+            document.getElementById('cart-page').classList.add('plp-hidden');
+            document.getElementById('checkout-page').classList.add('plp-hidden');
+            document.getElementById('product-detail').classList.remove('pdp-hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function selectColor(colorHex, el) {
+            // Update Text
+            document.getElementById('selected-color-name').innerText = getColorName(colorHex);
+            
+            // Update Swatches UI
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.classList.remove('active', 'ring-2', 'ring-black', 'ring-offset-2');
+            });
+            el.classList.add('active', 'ring-2', 'ring-black', 'ring-offset-2');
+        }
+
+        function selectSize(size, el) {
+            if (el.classList.contains('opacity-30')) return; // Disabled size
+
+            // Update Text
+            document.getElementById('selected-size-name').innerText = "Uniseks " + size;
+
+            // Update Buttons UI
+            document.querySelectorAll('.size-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-black', 'text-white', 'border-black');
+            });
+            el.classList.add('active', 'bg-black', 'text-white', 'border-black');
+        }
+
+        function closePromoBanner() {
+            const banner = document.getElementById('promo-banner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+
+        function showTshirtPLP(pushHistory = true) {
+            if (pushHistory) history.pushState({ type: 'tshirt-plp' }, '', '#tshirt');
+
+            document.getElementById('landing-page').classList.add('plp-hidden');
+            document.getElementById('tshirt-plp').classList.remove('plp-hidden');
+            document.getElementById('polo-plp').classList.add('plp-hidden');
+            document.getElementById('category-plp').classList.add('plp-hidden');
+            document.getElementById('product-detail').classList.add('pdp-hidden');
+            document.getElementById('cart-page').classList.add('plp-hidden');
+            document.getElementById('checkout-page').classList.add('plp-hidden');
+            document.getElementById('address-page').classList.add('plp-hidden');
+            renderProducts();
+            window.scrollTo(0, 0);
+        }
+
+        function showPoloPLP(pushHistory = true) {
+            if (pushHistory) history.pushState({ type: 'polo-plp' }, '', '#polo');
+
+            document.getElementById('landing-page').classList.add('plp-hidden');
+            document.getElementById('tshirt-plp').classList.add('plp-hidden');
+            document.getElementById('polo-plp').classList.remove('plp-hidden');
+            document.getElementById('category-plp').classList.add('plp-hidden');
+            document.getElementById('product-detail').classList.add('pdp-hidden');
+            document.getElementById('cart-page').classList.add('plp-hidden');
+            document.getElementById('checkout-page').classList.add('plp-hidden');
+            document.getElementById('address-page').classList.add('plp-hidden');
+            renderPoloProducts();
+            window.scrollTo(0, 0);
+        }
+
+        function showCategoryPLP(categoryName, pushHistory = true) {
+            if (pushHistory) history.pushState({ type: 'category-plp', category: categoryName }, '', `#category-${categoryName.replace(/\s+/g, '-').toLowerCase()}`);
+
+            document.getElementById('landing-page').classList.add('plp-hidden');
+            document.getElementById('tshirt-plp').classList.add('plp-hidden');
+            document.getElementById('polo-plp').classList.add('plp-hidden');
+            document.getElementById('category-plp').classList.remove('plp-hidden');
+            document.getElementById('product-detail').classList.add('pdp-hidden');
+            document.getElementById('cart-page').classList.add('plp-hidden');
+            document.getElementById('checkout-page').classList.add('plp-hidden');
+            document.getElementById('address-page').classList.add('plp-hidden');
+            
+            document.getElementById('category-plp-title').innerText = categoryName;
+            renderCategoryProducts(categoryName);
+            window.scrollTo(0, 0);
+        }
+
+        function renderCategoryProducts(categoryName) {
+            const container = document.getElementById('category-list-container');
+            if (!container) return;
+
+            let html = '';
+            // Gunakan data produk yang ada sebagai basis
+            const baseProducts = [...products, ...poloProducts];
+            
+            for (let i = 0; i < 40; i++) {
+                const product = baseProducts[i % baseProducts.length];
+                html += `
+                    <div class="group cursor-pointer relative" onclick="showProductDetail(${product.id})">
+                        <div class="aspect-[3/4] bg-gray-100 mb-4 overflow-hidden relative">
+                            <img src="${product.image}${product.image.includes('?') ? '&' : '?'}sig=cat-${categoryName}-${i}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <button class="absolute bottom-4 right-4 text-gray-400 hover:text-black"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="flex space-x-1 mb-2">
+                            ${product.colors.map(color => `
+                                <div class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${color}"></div>
+                            `).join('')}
+                        </div>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold mb-1">${categoryName} • XS-XXL</p>
+                        <h3 class="text-xs font-bold mb-1 group-hover:underline">${product.name}</h3>
+                        <div class="flex items-baseline space-x-2 mb-1">
+                            <p class="font-bold text-sm">${product.price}</p>
+                        </div>
+                        <p class="text-[9px] text-gray-500 leading-tight">Banyak Warna Pilihan</p>
+                        <div class="flex items-center space-x-1 text-[8px] mt-2">
+                            <div class="flex text-black">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="font-bold">(24)</span>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        function renderPoloProducts() {
+            const container = document.getElementById('polo-list-container');
+            if (!container) {
+                console.error("Error: Element 'polo-list-container' not found in DOM.");
+                return;
+            }
+
+            let html = '';
+            // Render 40 products (10 rows of 4) based on poloProducts data
+            for (let i = 0; i < 40; i++) {
+                const product = poloProducts[i % poloProducts.length];
+                html += `
+                    <div class="group cursor-pointer relative" onclick="showProductDetail(${product.id})">
+                        <div class="aspect-[3/4] bg-gray-100 mb-4 overflow-hidden relative">
+                            <img src="${product.image}${product.image.includes('?') ? '&' : '?'}sig=${i}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <button class="absolute bottom-4 right-4 text-gray-400 hover:text-black"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="flex space-x-1 mb-2">
+                            ${product.colors.map(color => `
+                                <div class="w-3 h-3 rounded-full border border-gray-300" style="background-color: ${color}"></div>
+                            `).join('')}
+                        </div>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold mb-1">${product.category}</p>
+                        <h3 class="text-xs font-bold mb-1 group-hover:underline">${product.name}</h3>
+                        <div class="flex items-baseline space-x-2 mb-1">
+                            <p class="font-bold text-sm ${product.oldPrice ? 'text-red-600' : ''}">${product.price}</p>
+                            ${product.oldPrice ? `<p class="text-[10px] text-gray-400 line-through">${product.oldPrice}</p>` : ''}
+                        </div>
+                        <p class="text-[9px] text-gray-500 leading-tight">${product.tag || ''}</p>
+                        <div class="flex items-center space-x-1 text-[8px] mt-2">
+                            <div class="flex text-black">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="font-bold">(12)</span>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        function showLanding(pushHistory = true) {
+            if (pushHistory) history.pushState({ type: 'landing' }, '', ' '); // Use a space to clear hash or just empty string
+
+            document.getElementById('landing-page').classList.remove('plp-hidden');
+            document.getElementById('tshirt-plp').classList.add('plp-hidden');
+            document.getElementById('polo-plp').classList.add('plp-hidden');
+            document.getElementById('category-plp').classList.add('plp-hidden');
+            document.getElementById('product-detail').classList.add('pdp-hidden');
+            document.getElementById('cart-page').classList.add('plp-hidden');
+            document.getElementById('checkout-page').classList.add('plp-hidden');
+            document.getElementById('address-page').classList.add('plp-hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Hero Slider Logic
+        let currentHeroSlide = 0;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroProgress = document.getElementById('hero-progress');
+        let progressInterval;
+
+        function updateHeroSlider() {
+            heroSlides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentHeroSlide);
+                // Restart Ken Burns animation by re-triggering class
+                const bg = slide.querySelector('.animate-kenburns');
+                if (bg) {
+                    bg.style.animation = 'none';
+                    bg.offsetHeight; // trigger reflow
+                    bg.style.animation = null;
+                }
+            });
+            
+            // Reset progress bar
+            let progress = 0;
+            clearInterval(progressInterval);
+            progressInterval = setInterval(() => {
+                progress += 1;
+                heroProgress.style.height = `${progress}%`;
+                if (progress >= 100) {
+                    nextHeroSlide();
+                }
+            }, 50); // 5 seconds per slide (50ms * 100)
+        }
+
+        function nextHeroSlide() {
+            currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+            updateHeroSlider();
+        }
+
+        // Marquee Logic (Trending Now)
+        function renderMarquee() {
+            const marqueeContent = document.getElementById('marquee-content');
+            const marqueeClone = document.getElementById('marquee-content-clone');
+            
+            if (!marqueeContent || !marqueeClone) return;
+            
+            // Use a subset of products for marquee
+            const trendingItems = products.slice(0, 6); 
+            
+            const html = trendingItems.map(product => `
+                <div class="w-48 flex-shrink-0 bg-white p-2 shadow-sm cursor-pointer group" onclick="showProductDetail(${product.id})">
+                    <div class="aspect-[3/4] overflow-hidden mb-2">
+                        <img src="${product.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <p class="text-[8px] font-bold text-gray-400 uppercase">${product.category}</p>
+                    <h4 class="text-[10px] font-bold truncate">${product.name}</h4>
+                    <p class="text-xs font-black">${product.price}</p>
+                </div>
+            `).join('');
+            
+            marqueeContent.innerHTML = html;
+            marqueeClone.innerHTML = html;
+        }
+
+        // Initialize on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderMarquee();
+            updateHeroSlider();
+        });
+    </script>
+
+</body>
+</html>
